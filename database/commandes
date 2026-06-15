@@ -1,0 +1,39 @@
+docker build -t mattmarques/postgres .
+docker run -d -p 15432:5432 --name postgres mattmarques/postgres
+
+///
+
+docker network create app-network
+
+docker build -t mattmarques/postgres .
+
+ docker run -d \
+  --name postgres \
+  --network app-network \
+  -e POSTGRES_DB=db \
+  -e POSTGRES_USER=usr \
+  -e POSTGRES_PASSWORD=pwd \
+  mattmarques/postgres
+
+  docker run -d \
+  --name adminer \
+  --network app-network \
+  -p 8090:8080 \
+  adminer
+
+///
+
+docker volume create postgres-data
+
+docker build -t mattmarques/postgres .
+
+ docker run -d \
+    --name postgres-db \
+    --network app-network \
+    -v postgres-data:/var/lib/postgresql/data \
+    -e POSTGRES_DB=db \
+    -e POSTGRES_USER=usr \
+    -e POSTGRES_PASSWORD=pwd \
+  mattmarques/postgres
+
+///

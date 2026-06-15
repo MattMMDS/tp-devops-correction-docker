@@ -1,0 +1,26 @@
+docker build -t my-httpd .
+docker run -d \
+--name http-server \
+-p 80:80 \
+my-httpd
+http://localhost/
+
+docker logs http-server
+docker stats
+docker inspect http-server
+
+
+docker exec -it http-server bash
+docker cp http-server:/usr/local/apache2/conf/httpd.conf .
+
+
+ docker run -d \
+--name http-server \
+--network app-network \
+-p 80:80 \
+my-httpd
+4aabb64125d4ce190f1084f28fb58beece86da4898d0643f63dc5772e3e3dc1c
+
+
+docker network inspect app-network
+ on a ok sur http://localhost:8080/departments/IRC/students et http://localhost/departments/IRC/students
