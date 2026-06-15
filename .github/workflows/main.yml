@@ -54,7 +54,7 @@ jobs:
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=MattMMDS_tp-devops-correction-docker
+        run: mvn --file ./simpleapi/pom.xml -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=MattMMDS_tp-devops-correction-docker
 
   # define job to build and publish docker image
   build-and-push-docker-image:
