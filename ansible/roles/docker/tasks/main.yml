@@ -53,3 +53,8 @@
     name: docker
     state: started
     enabled: yes
+
+- name: Stop and remove running containers
+  shell: |
+    docker ps -q | xargs -r docker rm -f
+  changed_when: false
