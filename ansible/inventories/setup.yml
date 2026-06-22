@@ -1,0 +1,8 @@
+all:
+  vars:
+    ansible_user: admin
+    ansible_ssh_private_key_file: /home/marquesm/univ/M2/s10/devops/j3/id_rsa_8
+
+  children:
+    prod:
+      hosts: mattyas.marques-martins.takima.school

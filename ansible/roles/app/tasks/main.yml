@@ -1,0 +1,22 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/app
+- name: Start backend
+
+  docker_container:
+    name: back-api
+
+    image: mattmarques/tp-devops-simple-api
+
+    restart_policy: unless-stopped
+
+    env:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/db
+      SPRING_DATASOURCE_USERNAME: usr
+      SPRING_DATASOURCE_PASSWORD: pwd
+
+    networks:
+      - name: app-network
+
+  vars:
+    ansible_python_interpreter: /opt/docker_venv/bin/python

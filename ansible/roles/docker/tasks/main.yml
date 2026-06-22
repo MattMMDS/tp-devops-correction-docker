@@ -1,0 +1,55 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/docker
+
+- name: Install prerequisites
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+      - python3
+      - python3-pip
+      - python3-venv
+    state: present
+    update_cache: yes
+
+- name: Add Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+
+- name: Add Docker repository
+  apt_repository:
+    repo: >
+      deb [arch=amd64]
+      https://download.docker.com/linux/debian
+      {{ ansible_distribution_release }}
+      stable
+    state: present
+    update_cache: yes
+
+- name: Install Docker
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: present
+
+- name: Create Python venv
+  command:
+    cmd: python3 -m venv /opt/docker_venv
+    creates: /opt/docker_venv
+
+- name: Install Docker SDK
+  command:
+    cmd: /opt/docker_venv/bin/pip install docker
+
+- name: Start Docker
+  service:
+    name: docker
+    state: started
+    enabled: yes

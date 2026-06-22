@@ -1,0 +1,29 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/database
+- name: Create postgres volume
+  docker_volume:
+    name: postgres-data
+
+- name: Start PostgreSQL
+
+  docker_container:
+    name: postgres-db
+
+    image: mattmarques/tp-devops-database
+
+    restart_policy: unless-stopped
+
+    env:
+      POSTGRES_DB: db
+      POSTGRES_USER: usr
+      POSTGRES_PASSWORD: pwd
+
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+    networks:
+      - name: app-network
+
+  vars:
+    ansible_python_interpreter: /opt/docker_venv/bin/python

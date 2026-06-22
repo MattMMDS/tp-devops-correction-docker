@@ -1,0 +1,14 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/front
+- name: Launch frontend
+
+  docker_container:
+    name: front
+
+    image: mattmarques/tp-devops-front:latest
+
+    networks:
+      - name: app-network
+
+    restart_policy: always
