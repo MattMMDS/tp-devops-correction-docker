@@ -33,8 +33,8 @@ jobs:
             mkdir -p ~/.ssh
             echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
             chmod 400 ~/.ssh/id_rsa
-            ssh-keyscan -H nino.sportes.takima.school >> ~/.ssh/known_hosts
-            echo "Host nino.sportes.takima.school
+            ssh-keyscan -H mattyas.marques-martins.takima.school >> ~/.ssh/known_hosts
+            echo "Host mattyas.marques-martins.takima.school
               IdentityFile ~/.ssh/id_rsa
               User admin" > ~/.ssh/config
             chmod 400 ~/.ssh/config
