@@ -8,6 +8,8 @@
     name: http-server
 
     image: mattmarques/tp-devops-httpd:latest
+    pull: yes
+    recreate: yes
 
     restart_policy: unless-stopped
 
