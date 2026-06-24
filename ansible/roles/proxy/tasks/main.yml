@@ -7,7 +7,7 @@
   docker_container:
     name: http-server
 
-    image: mattmarques/tp-devops-httpd
+    image: mattmarques/tp-devops-httpd:latest
 
     restart_policy: unless-stopped
 
